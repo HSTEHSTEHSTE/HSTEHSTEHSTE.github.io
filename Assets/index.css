@@ -14,7 +14,7 @@ nav {
     justify-content:center;
     }
 
-ul {
+.header{
     margin:0 auto;
     width:80%;
     display:flex;
@@ -23,10 +23,11 @@ ul {
 
 nav ul {
     margin: 0px;
-    padding: 24px 0px 5px 30px;
+    padding: 0px 0px 5px 30px;
     }
 
 nav li {
+    margin-left: 10px;
     margin-right: 40px;
     list-style: none;
     text-decoration: none;
