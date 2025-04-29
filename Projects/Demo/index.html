@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="description"
+      content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <style>
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        /* Centers horizontally */
+        align-items: center;
+        /* Centers vertically (if needed) */
+        height: 250px;
+        /* Adjust height as needed */
+      }
+
+      .logo {
+        width: 370px;
+        /* Adjust logo size */
+        height: auto;
+      }
+
+      .table-container {
+        overflow-x: auto;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+          <a class="navbar-item" href="../../index.html">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+          </a>
+
+          <!--
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://caizexin.github.io/EmoSpk_Tradeoff/index.html">
+            Anonymization
+          </a>
+          <a class="navbar-item" href="https://caizexin.github.io/GenVC/index.html">
+            GenVC
+          </a>
+        </div>
+      </div>
+      -->
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="logo-container">
+      <img src="./logo_generic.png" alt="Logo" class="logo">
+    </div>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Project Name</h1>
+              <div class="is-size-5 publication-authors">
+                <a href="https://hstehstehste.github.io">Henry Li Xinyuan</a>,</span>
+                <span class="author-block">
+
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Organization</span>
+              </div>
+
+              <!--
+            <div class="column has-text-centered">
+                <div class="publication-links">
+                <span class="link-block">
+                    <a href="https://arxiv.org/abs/2502.04519"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                    </a>
+                </span>
+                <span class="link-block">
+                    <a href="https://github.com/caizexin/GenVC"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                    </a>
+                </span>
+                <span class="link-block">
+                    <a href="https://huggingface.co/ZexinCai/GenVC"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" >
+                    </span>
+                    <span>Model</span>
+                    </a>
+                </span>
+                </div>
+            -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Placeholder abstract
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+
+        <div class="columns is-centered">
+          <!-- Matting. -->
+          <div class="column">
+            <h2 class="title is-3">Approach</h2>
+            <div class="columns is-centered">
+              <div class="column content">
+                <img src="./approach.jpg">
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!--/ Matting. -->
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container" style="overflow-x: auto; white-space: nowrap;">
+        <h2 class="title is-3" style="text-align: center;">Unseen Voice Conversion</h2>
+        <table class="table table-borderless align-middle" style="text-align: center;">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">Target Sentence</th>
+              <th class="text-center" scope="col">Target Accent</th>
+              <th class="text-center" scope="col">Speaker Prompt</th>
+              <th class="text-center" scope="col">Ground Truth</th>
+              <th class="text-center" scope="col">Baselines</th>
+              <th class="text-center" scope="col">Fine-tuned XTTS</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- Row 1 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        Many different routes have been 
+                        <br>travelled through the years.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        US
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/0.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/US/0.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/US/sentence_0_spk_0.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/US/sentence_0_spk_0.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/US/sentence_0_spk_0.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/US/sentence_0_spk_0.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 2 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        Pasturella can be transmitted
+                        <br> through the bite of a dog.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        US
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/1.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/US/1.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/US/sentence_1_spk_1.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/US/sentence_1_spk_1.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/US/sentence_1_spk_1.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/US/sentence_1_spk_1.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 3 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        The development of these forces
+                        <br> took place in three stages.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        England
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/2.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/England/2.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/England/sentence_2_spk_2.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/England/sentence_2_spk_2.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/England/sentence_2_spk_2.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/England/sentence_2_spk_2.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 4 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        She enjoys visiting Florida,
+                        <br> because of the climate.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        England
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/3.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/England/3.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/England/sentence_3_spk_3.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/England/sentence_3_spk_3.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/England/sentence_3_spk_3.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/England/sentence_3_spk_3.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 5 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        He was killed while trying
+                        <br> prevent illegal land
+                        <br> grabbing and logging.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        India
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/4.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/India/4.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/India/sentence_4_spk_4.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/India/sentence_4_spk_4.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/India/sentence_4_spk_4.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/India/sentence_4_spk_4.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 6 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        Don't you see what a wonderful
+                        <br> thing this can be?
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        India
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/5.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/India/5.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/India/sentence_5_spk_5.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/India/sentence_5_spk_5.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/India/sentence_5_spk_5.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/India/sentence_5_spk_5.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 7 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        My niece sent me a nice
+                        <br> photo of Moscow via email.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        Africa
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/6.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/Africa/6.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/Africa/sentence_6_spk_6.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/Africa/sentence_6_spk_6.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/Africa/sentence_6_spk_6.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/Africa/sentence_6_spk_6.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 8 ********************************************************************* -->
+            <tr>
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        Instead, Africa, its music,
+                        <br> land, people, spirituality,
+                        <br> tie us all together as a planet.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        Africa
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/spks/7.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td nowrap>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/src_cv/Africa/7.mp3">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        VALLE-V2
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/valle_v2/Africa/sentence_7_spk_7.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Vevo
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/vevo/Africa/sentence_7_spk_7.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td>
+                <table class="table table-borderless align-middle">
+                  <tbody>
+                    <tr>
+                      <td>
+                        XTTS (unfiltered CommonAccent)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unfiltered/150000/Africa/sentence_7_spk_7.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        XTTS (Unlabeled CommonVoice)
+                      </td>
+                      <td>
+                        <audio controls="" preload="none" style="margin: 0 auto; display: block;">
+                          <source src="audio/unlabeled/100000/Africa/sentence_7_spk_7.wav">
+                        </audio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <!--       </div>
+    </div>
+  </div> -->
+    </section>
+
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>placeholder bibtex</code></pre>
+      </div>
+    </section>
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <a class="icon-link"
+            href="placeholder_paper_link">
+            <i class="fas fa-file-pdf"></i>
+          </a>
+          <a class="icon-link" href="placeholder_code_link" class="external-link" disabled>
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>&copy; organization name and link </p>
+              <p>
+                This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                  Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+              <p>
+                Website source code based on the <a
+                  href="https://nerfies.github.io">Nerfies</a> project page. If you want to reuse their <a
+                  href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+              </p>
+              <p class="float-end"><a href="#">Back to top</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+
+</html>
