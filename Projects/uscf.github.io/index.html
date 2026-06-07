@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Placeholder description.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>USCF Demo</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <style>
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            /* Centers horizontally */
+            align-items: center;
+            /* Centers vertically (if needed) */
+            height: 250px;
+            /* Adjust height as needed */
+        }
+
+        .logo {
+            width: 370px;
+            /* Adjust logo size */
+            height: auto;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+            </div>
+
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">Universal Speech Content Factorization</h1>
+                        <div class="is-size-5 publication-authors">
+                            <a href="https://hstehstehste.github.io">Henry Li Xinyuan</a>, 
+                            <a href="https://caizexin.github.io/">Zexin Cai</a>, 
+                            <a href="https://www.linkedin.com/in/lin-zhang-2656a0124/">Lin Zhang</a>,
+                            <a href="https://www.clsp.jhu.edu/faculty/paola-garcia/">Leibny Paola García-Perera</a>, <br>
+                            <a href="https://engineering.jhu.edu/faculty/berrak-sisman/">Berrak Sisman</a>, 
+                            <a href="https://engineering.jhu.edu/faculty/sanjeev-khudanpur/">Sanjeev Khudanpur</a>, 
+                            <a href="https://www.cs.jhu.edu/~noa/">Nicholas Andrews</a>, 
+                            <a href="https://m-wiesner.github.io/about/">Matthew Wiesner</a>
+                            <span class="author-block">
+
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Human Language Technology Center of Excellence</span><br>
+                            <span class="author-block">and</span><br>
+                            <span class="author-block">Center for Language and Speech Processing</span><br>
+                            <span class="author-block">Johns Hopkins University</span><br>
+                            <span class="author-block">Baltimore, Maryland</span><br>
+                            <span class="author-block">xli257@jhu.edu</span>
+                        </div>
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+We propose Universal Speech Content Factorization
+(USCF), a simple and invertible linear method for extracting a 
+low-rank speech representation in which speaker timbre is suppressed 
+while phonetic content is preserved. USCF extends 
+Speech Content Factorization (SCF), a closed-set voice conversion 
+method, to an open-set setting by learning a universal 
+speech-to-content mapping via least-squares optimization and 
+deriving speaker-specific transformations from only a few seconds 
+of target speech. We show through embedding analysis
+that USCF effectively removes speaker-dependent variation. As
+a zero-shot voice conversion system, USCF achieves competitive 
+intelligibility, naturalness, and speaker similarity compared
+to methods that require substantially more target-speaker data or
+additional neural training. Finally, we demonstrate that USCF
+features can serve as an alternative acoustic representation for
+text-to-speech, offering a linear, training-efficient substitute for
+timbre-prompted SSL-based systems. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container" style="overflow-x: auto; white-space: nowrap;">
+            <h2 class="title is-3" style="text-align: center;">Voice Conversion</h2>
+            <table class="table table-borderless align-middle" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Input Sentence</th>
+                        <th class="text-center" scope="col">Target Speaker Sample</th>
+                        <th class="text-center" scope="col">USCF</th>
+                        <th class="text-center" scope="col">Baselines</th>
+                        <th class="text-center" scope="col">TTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/121-121726-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>ALSO A POPULAR 
+                                            <br>CONTRIVANCE WHEREBY 
+                                            <br>LOVE MAKING MAY BE
+                                            <br>SUSPENDED BUT 
+                                            <br>NOT STOPPED DURING
+                                            <br>THE PICNIC SEASON
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/3005-163389-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/121-121726-0000_3005.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/121-121726-0000_3005.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/121-121726-0000_3005.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/121-121726-0000_3005.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/121-121726-0000_3005.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/121-121726-0000_3005.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/121-121726-0000_3005.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 2 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/908-157963-0001.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>O LIFE OF THIS 
+                                            <br>OUR SPRING
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/3080-5032-0001.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/908-157963-0001_3080.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/908-157963-0001_3080.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/908-157963-0001_3080.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/908-157963-0001_3080.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/908-157963-0001_3080.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/908-157963-0001_3080.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/908-157963-0001_3080.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 3 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/1089-134691-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>HE COULD WAIT
+                                            <br>NO LONGER
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/2033-164914-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/1089-134691-0000_2033.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/1089-134691-0000_2033.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/1089-134691-0000_2033.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/1089-134691-0000_2033.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/1089-134691-0000_2033.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/1089-134691-0000_2033.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/1089-134691-0000_2033.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 4 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/1221-135767-0002.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>AT THAT EPOCH
+                                            <br>OF PRISTINE 
+                                            <br>SIMPLICITY 
+                                            <br>HOWEVER 
+                                            <br>MATTERS OF 
+                                            <br>EVEN SLIGHTER 
+                                            <br>PUBLIC INTEREST 
+                                            <br>AND OF FAR LESS 
+                                            <br>INTRINSIC WEIGHT 
+                                            <br>THAN THE WELFARE 
+                                            <br>OF HESTER AND 
+                                            <br>HER CHILD WERE 
+                                            <br>STRANGELY MIXED
+                                            <br> UP WITH THE 
+                                            <br>DELIBERATIONS OF 
+                                            <br>LEGISLATORS AND 
+                                            <br>ACTS OF STATE
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/1998-15444-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/1221-135767-0002_1998.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/1221-135767-0002_1998.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/1221-135767-0002_1998.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/1221-135767-0002_1998.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/1221-135767-0002_1998.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/1221-135767-0002_1998.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/1221-135767-0002_1998.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 5 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/1320-122617-0001.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>IN HIS RETURN 
+                                            <br>TO THE CAMP 
+                                            <br>HIS ACUTE AND 
+                                            <br>PRACTISED 
+                                            <br>INTELLECTS WERE 
+                                            <br>INTENTLY ENGAGED 
+                                            <br>IN DEVISING 
+                                            <br>MEANS TO 
+                                            <br>COUNTERACT A 
+                                            <br>WATCHFULNESS AND 
+                                            <br>SUSPICION ON THE 
+                                            <br>PART OF HIS 
+                                            <br>ENEMIES THAT HE 
+                                            <br>KNEW WERE IN NO 
+                                            <br>DEGREE INFERIOR 
+                                            <br>TO HIS OWN
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/533-1066-0001.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/1320-122617-0001_533.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/1320-122617-0001_533.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/1320-122617-0001_533.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/1320-122617-0001_533.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/1320-122617-0001_533.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/1320-122617-0001_533.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/1320-122617-0001_533.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 6 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/1580-141083-0001.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>I HAD ALWAYS 
+                                            <br>KNOWN HIM TO 
+                                            <br>BE RESTLESS IN 
+                                            <br>HIS MANNER BUT 
+                                            <br>ON THIS 
+                                            <br>PARTICULAR 
+                                            <br>OCCASION HE WAS 
+                                            <br>IN SUCH A STATE 
+                                            <br>OF UNCONTROLLABLE 
+                                            <br>AGITATION THAT IT 
+                                            <br>WAS CLEAR 
+                                            <br>SOMETHING VERY 
+                                            <br>UNUSUAL HAD 
+                                            <br>OCCURRED
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/3538-142836-0001.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/1580-141083-0001_3538.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/1580-141083-0001_3538.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/1580-141083-0001_3538.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/1580-141083-0001_3538.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/1580-141083-0001_3538.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/1580-141083-0001_3538.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/1580-141083-0001_3538.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 7 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/2094-142345-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>IT IS A VERY 
+                                            <br>FINE OLD PLACE 
+                                            <br>OF RED BRICK 
+                                            <br>SOFTENED BY A 
+                                            <br>PALE POWDERY 
+                                            <br>LICHEN WHICH 
+                                            <br>HAS DISPERSED 
+                                            <br>ITSELF WITH 
+                                            <br>HAPPY 
+                                            <br>IRREGULARITY SO 
+                                            <br>AS TO BRING THE 
+                                            <br>RED BRICK INTO 
+                                            <br>TERMS OF 
+                                            <br>FRIENDLY 
+                                            <br>COMPANIONSHIP 
+                                            <br>WITH THE 
+                                            <br>LIMESTONE 
+                                            <br>ORNAMENTS 
+                                            <br>SURROUNDING THE 
+                                            <br>THREE GABLES 
+                                            <br>THE WINDOWS AND 
+                                            <br>THE DOOR PLACE
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/3997-180294-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/2094-142345-0000_3997.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/2094-142345-0000_3997.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/2094-142345-0000_3997.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/2094-142345-0000_3997.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/2094-142345-0000_3997.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/2094-142345-0000_3997.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/2094-142345-0000_3997.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 8 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/2300-131720-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>THE PARIS PLANT 
+                                            <br>LIKE THAT AT 
+                                            <br>THE CRYSTAL 
+                                            <br>PALACE WAS A 
+                                            <br>TEMPORARY 
+                                            <br>EXHIBIT
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/4294-9934-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/2300-131720-0000_4294.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/2300-131720-0000_4294.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/2300-131720-0000_4294.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/2300-131720-0000_4294.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/2300-131720-0000_4294.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/2300-131720-0000_4294.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/2300-131720-0000_4294.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 9 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/2830-3980-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>IN EVERY WAY 
+                                            <br>THEY SOUGHT 
+                                            <br>TO UNDERMINE 
+                                            <br>THE AUTHORITY 
+                                            <br>OF SAINT PAUL
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/6128-63240-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/2830-3980-0000_6128.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/2830-3980-0000_6128.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/2830-3980-0000_6128.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/2830-3980-0000_6128.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/2830-3980-0000_6128.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/2830-3980-0000_6128.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/2830-3980-0000_6128.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Row 10 ********************************************************************* -->
+                    <tr>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/orig/2961-960-0002.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>
+                                            <br>IN THE SUPPOSED 
+                                            <br>DEPTHS OF THIS 
+                                            <br>DIALOGUE THE NEO 
+                                            <br>PLATONISTS FOUND 
+                                            <br>HIDDEN MEANINGS 
+                                            <br>AND CONNECTIONS 
+                                            <br>WITH THE JEWISH 
+                                            <br>AND CHRISTIAN 
+                                            <br>SCRIPTURES AND 
+                                            <br>OUT OF THEM THEY 
+                                            <br>ELICITED DOCTRINES 
+                                            <br>QUITE AT VARIANCE 
+                                            <br>WITH THE SPIRIT OF 
+                                            <br>PLATO
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/prompts/7018-75788-0000.flac">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            SCF (closed set)
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/scf/2961-960-0002_7018.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 10s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf/2961-960-0002_7018.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            USCF - 100s target speech
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/uscf_fl/2961-960-0002_7018.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            kNN-VC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/knnvc/2961-960-0002_7018.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            LinearVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/linearvc/2961-960-0002_7018.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            SeedVC
+                                        </td>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/seedvc/2961-960-0002_7018.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-borderless align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <audio controls="" preload="none" style="margin: 0 auto; display: block; width: 150px;">
+                                                <source src="audio/tts/2961-960-0002_7018.wav">
+                                            </audio>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <a class="icon-link" href="https://arxiv.org/abs/2603.08977">
+                    <i class="fas fa-file-pdf"></i>
+                </a>
+                <a class="icon-link" href="https://github.com/HSTEHSTEHSTE/uscf"  class="external-link" disabled>
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                        <p>
+                            Website source code based on the <a href="https://nerfies.github.io">Nerfies</a> project
+                            page. If you want to reuse their <a
+                                href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them
+                            appropriately.
+                        </p>
+                        <p class="float-end"><a href="#">Back to top</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
